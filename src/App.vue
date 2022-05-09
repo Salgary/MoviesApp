@@ -1,28 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <MoviesList :list="moviesList"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import { mapActions, mapGetters } from "vuex";
+import MoviesList from "@/components/MoviesList";
 
 export default {
-  name: "App",
+  name: "app",
   components: {
-    HelloWorld,
+   MoviesList,
   },
+  mounted() {
+    // this.fetchMovies();
+  },
+  computed: {
+    ...mapGetters("movies", ["moviesList"]),
+  },
+  methods: {
+    ...mapActions("movies", ["fetchMovies"])
+  }
 };
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Arial, Helvetica, sans-serif";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
 }
 </style>
