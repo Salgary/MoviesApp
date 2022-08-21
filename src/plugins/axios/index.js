@@ -8,4 +8,3 @@ const instance = axios.create({
 interceptors(instance);
 
 export default instance;
- 

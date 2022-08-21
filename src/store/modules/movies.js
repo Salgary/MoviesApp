@@ -9,7 +9,7 @@ function serializeResponse(movies) {
   }, {});
 }
 
-const { MOVIES } = mutations;
+const { MOVIES, CURRENT_PAGE, REMOVE_MOVIE } = mutations;
 
 const moviesStore = {
   namespaced: true,
@@ -17,51 +17,63 @@ const moviesStore = {
     top250IDs: IDs,
     moviesPerPage: 12,
     currentPage: 1,
-    movies2: {
-      20: {
-        Genre: "VBOX"
-      }
-    },
     movies: {},
   },
   getters: {
     moviesList: ({ movies }) => movies,
     slicedIDs: ({ top250IDs }) => (from, to) => top250IDs.slice(from, to),
     currentPage: ({ currentPage }) => currentPage,
-    moviesPerPage: ({ moviesPerPage }) => moviesPerPage
+    moviesPerPage: ({ moviesPerPage }) => moviesPerPage,
+    moviesLength: ({ top250IDs }) => Object.keys(top250IDs).length,
   },
   mutations: {
     [MOVIES](state, value) {
       state.movies = value;
-    }
+    },
+    [CURRENT_PAGE](state, value) {
+      state.currentPage = value;
+    },
+    [REMOVE_MOVIE](state, index) {
+      state.top250IDs.splice(index, 1);
+    },
   },
   actions: {
     initMoviesStore: {
       handler({ dispatch }) {
-        dispatch("fetchMovies")
+        dispatch("fetchMovies");
       },
       root: true,
     },
-
-    async fetchMovies({ getters, commit }) {
+    async fetchMovies({ getters, commit, dispatch }) {
       try {
+        dispatch("toggleLoader", true, { root: true });
         const { currentPage, moviesPerPage, slicedIDs } = getters;
         const from = currentPage * moviesPerPage - moviesPerPage;
         const to = currentPage * moviesPerPage;
         const moviesToFetch = slicedIDs(from, to);
-        console.log(moviesToFetch);
-        const requests = moviesToFetch.map(id => axios.get(`/?i=${id}`));
-        console.log(requests);
+
+        const requests = moviesToFetch.map((id) => axios.get(`/?i=${id}`));
         const response = await Promise.all(requests);
-        console.log(response);
         const movies = serializeResponse(response);
-        console.log(movies);
         commit(MOVIES, movies);
       } catch (err) {
-        console.log("this is  note", err);
+        console.log(err);
+      } finally {
+        dispatch("toggleLoader", false, { root: true });
       }
-    }
-  }
+    },
+    changeCurrentPage({ commit, dispatch }, page) {
+      commit(CURRENT_PAGE, page);
+      dispatch("fetchMovies");
+    },
+    removeMovie({ commit, dispatch, state }, id) {
+      const index = state.top250IDs.findIndex((item) => item == id);
+      if (index != -1) {
+        commit(REMOVE_MOVIE, index);
+        dispatch("fetchMovies");
+      }
+    },
+  },
 };
 
 export default moviesStore;
