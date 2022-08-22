@@ -21,7 +21,10 @@ const moviesStore = {
   },
   getters: {
     moviesList: ({ movies }) => movies,
-    slicedIDs: ({ top250IDs }) => (from, to) => top250IDs.slice(from, to),
+    slicedIDs:
+      ({ top250IDs }) =>
+      (from, to) =>
+        top250IDs.slice(from, to),
     currentPage: ({ currentPage }) => currentPage,
     moviesPerPage: ({ moviesPerPage }) => moviesPerPage,
     moviesLength: ({ top250IDs }) => Object.keys(top250IDs).length,
@@ -71,6 +74,22 @@ const moviesStore = {
       if (index != -1) {
         commit(REMOVE_MOVIE, index);
         dispatch("fetchMovies");
+      }
+    },
+    async searchMovies({ commit, dispatch }, query) {
+      try {
+        dispatch("toggleLoader", true, { root: true });
+        const response = await axios.get(`/?s=${query}`);
+        // console.log(response);
+        if (response.Error) {
+          throw Error(response.Error);
+        }
+        const movies = serializeResponse(response.Search);
+        commit(MOVIES, movies);
+      } catch (err) {
+        console.log(err.message);
+      } finally {
+        dispatch("toggleLoader", false, { root: true });
       }
     },
   },
