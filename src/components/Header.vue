@@ -28,10 +28,20 @@ export default {
     searchValue: "onSearchValueChanged",
   },
   methods: {
-    ...mapActions("movies", ["searchMovies"]),
+    ...mapActions("movies", [
+      "searchMovies",
+      "fetchMovies",
+      "toggleSearchState",
+    ]),
     onSearchValueChanged(val) {
       console.log(val);
-      this.searchMovies(val);
+      if (val) {
+        this.searchMovies(val);
+        this.toggleSearchState(true);
+      } else {
+        this.fetchMovies();
+        this.toggleSearchState(false);
+      }
     },
   },
 };
