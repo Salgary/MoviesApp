@@ -1,5 +1,7 @@
 # moviesapp
 
+workplace = C:\GIT-repo\movies-app\moviesapp
+
 ## Project setup
 ```
 npm install
