@@ -8,7 +8,13 @@
       </div>
       <div class="movie-item-controls row no-gutters">
         <div class="col pr-2">
-          <BButton size="md" block variant="outline-light">Edit</BButton>
+          <BButton
+            size="md"
+            block
+            variant="outline-light"
+            @click="showInfoModalEvent"
+            >Info</BButton
+          >
         </div>
         <div class="col pl-2">
           <BButton
@@ -30,24 +36,27 @@ export default {
   props: {
     movie: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
   computed: {
     posterBg() {
       return {
-        "background-image": `url(${this.movie.Poster})`,
+        "background-image": `url(${this.movie.Poster})`
       };
-    },
+    }
   },
   methods: {
     emitRemoveEvent() {
       this.$emit("removeItem", {
         id: this.movie.imdbID,
-        title: this.movie.Title,
+        title: this.movie.Title
       });
     },
-  },
+    showInfoModalEvent() {
+      this.$emit("showModal", this.movie.imdbID);
+    }
+  }
 };
 </script>
 

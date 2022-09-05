@@ -8,6 +8,7 @@
             :movie="movie"
             @mouseover.native="onMouseOver(movie.Poster)"
             @removeItem="onRemoveItem"
+            @showModal="onShowMovieInfo"
           />
         </BCol>
       </template>
@@ -27,11 +28,11 @@ export default {
   props: {
     list: {
       type: Object,
-      default: () => ({}),
-    },
+      default: () => ({})
+    }
   },
   components: {
-    MovieItem,
+    MovieItem
   },
   computed: {
     ...mapGetters("movies", ["isSearch"]),
@@ -40,7 +41,7 @@ export default {
     },
     listTitle() {
       return this.isSearch ? "Search Results" : "IMDB Top 250";
-    },
+    }
   },
   methods: {
     ...mapActions("movies", ["removeMovie"]),
@@ -57,11 +58,14 @@ export default {
         this.showNotify({
           msg: "movir delete successful",
           variant: "success",
-          title: "Success",
+          title: "Success"
         });
       }
     },
-  },
+    onShowMovieInfo(id) {
+      console.log(id);
+    }
+  }
 };
 </script>
 
