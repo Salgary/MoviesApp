@@ -31,25 +31,25 @@ export default {
     MoviesPagination,
     Loader,
     Header,
-    Notification,
+    Notification
   },
   data: () => ({
-    posterBg: "",
+    posterBg: ""
   }),
   computed: {
     ...mapGetters("movies", [
       "moviesList",
       "currentPage",
       "moviesPerPage",
-      "moviesLength",
-    ]),
+      "moviesLength"
+    ])
   },
   watch: {
     "$route.query": {
       handler: "onPageQueryChange",
       immediate: true,
-      deep: true,
-    },
+      deep: true
+    }
   },
   methods: {
     ...mapActions("movies", ["changeCurrentPage"]),
@@ -61,8 +61,8 @@ export default {
     },
     onPageChanged(page) {
       this.$router.push({ query: { page } });
-    },
-  },
+    }
+  }
 };
 </script>
 

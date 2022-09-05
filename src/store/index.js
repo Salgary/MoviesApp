@@ -13,10 +13,10 @@ const store = new Vuex.Store({
   modules: {
     movies,
     loader,
-    notificationStore,
-  },
+    notificationStore
+  }
 });
 
-store.dispatch("initMoviesStore");
+// store.dispatch("initMoviesStore");
 
 export default store;

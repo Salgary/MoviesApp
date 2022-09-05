@@ -2,6 +2,7 @@
 node_modules
 /dist
 /src-old
+package-old.json
 
 
 # local env files

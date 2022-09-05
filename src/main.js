@@ -13,13 +13,13 @@ const router = new Router({
   routes: [
     {
       path: "/",
-      component: App,
-    },
-  ],
+      component: App
+    }
+  ]
 });
 
 new Vue({
   router,
   store,
-  render: (h) => h(App),
+  render: h => h(App)
 }).$mount("#app");
