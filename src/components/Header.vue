@@ -2,7 +2,7 @@
   <header class="header">
     <b-navbar type="dark" class="navbar" variant="dark">
       <b-container>
-        <b-navbar-brand href="#">BrandMovieDB</b-navbar-brand>
+        <b-navbar-brand href="#">MovieDB</b-navbar-brand>
         <b-nav-form>
           <b-form-input
             class="mr-sm-2 search-input"

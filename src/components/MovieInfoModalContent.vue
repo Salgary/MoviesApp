@@ -1,7 +1,7 @@
 <template>
   <div class="movie-info-wrap">
     <header class="movie-info-header">
-      <h6 class="movie-header-title">Movie VIEW</h6>
+      <h6 class="movie-header-title">Movie info</h6>
       <BIconX class="close-icon" @click="closeModal" />
     </header>
     <div class="movie-info-content">
@@ -36,10 +36,6 @@
           </div>
           <table class="table small">
             <tbody>
-              <tr>
-                <th>Production</th>
-                <td>{{ movie.Production }}</td>
-              </tr>
               <tr>
                 <th>Country</th>
                 <td>{{ movie.Country }}</td>
@@ -107,7 +103,7 @@ export default {
   align-items: center;
   padding: 1rem;
   background: linear-gradient(45deg, rgb(0, 3, 38) 0%, rgb(82, 15, 117) 100%);
-  color: #fff;
+  color: #ffc107;
 }
 
 .movie-header-title {
@@ -118,7 +114,7 @@ export default {
 
 .movie-info-content {
   padding: 1rem;
-  background-color: #fff;
+  background-color: bisque;
 }
 .movie-poster-wrap {
   position: relative;
@@ -143,6 +139,7 @@ export default {
 }
 .movie-rating {
   padding: 0;
+  background-color: bisque;
 }
 .movie-rating:focus {
   box-shadow: none;

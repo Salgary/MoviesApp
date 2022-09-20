@@ -74,7 +74,7 @@ export default {
       if (isConfirmed) {
         this.removeMovie(id);
         this.showNotify({
-          msg: "movir delete successful",
+          msg: "Movie deleted",
           variant: "success",
           title: "Success"
         });
