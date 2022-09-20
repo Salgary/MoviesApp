@@ -22,16 +22,16 @@ import { mapActions } from "vuex";
 export default {
   name: "Header",
   data: () => ({
-    searchValue: "",
+    searchValue: ""
   }),
   watch: {
-    searchValue: "onSearchValueChanged",
+    searchValue: "onSearchValueChanged"
   },
   methods: {
     ...mapActions("movies", [
       "searchMovies",
       "fetchMovies",
-      "toggleSearchState",
+      "toggleSearchState"
     ]),
     onSearchValueChanged(val) {
       console.log(val);
@@ -42,8 +42,8 @@ export default {
         this.fetchMovies();
         this.toggleSearchState(false);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

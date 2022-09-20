@@ -7,19 +7,19 @@ import { mapGetters } from "vuex";
 export default {
   name: "Notification",
   computed: {
-    ...mapGetters(["messagePool"]),
+    ...mapGetters(["messagePool"])
   },
   watch: {
-    messagePool: "showNotification",
+    messagePool: "showNotification"
   },
   methods: {
     showNotification({ variant, msg, title }) {
       this.$bvToast.toast(msg, {
         title,
         variant,
-        solid: true,
+        solid: true
       });
-    },
-  },
+    }
+  }
 };
 </script>

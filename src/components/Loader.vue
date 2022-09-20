@@ -8,8 +8,8 @@ import { mapGetters } from "vuex";
 export default {
   name: "Loader",
   computed: {
-    ...mapGetters(["isShowLoader"]),
-  },
+    ...mapGetters(["isShowLoader"])
+  }
 };
 </script>
 

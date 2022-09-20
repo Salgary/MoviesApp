@@ -8,23 +8,23 @@ export default {
   props: {
     poster: {
       type: String,
-      default: "",
-    },
+      default: ""
+    }
   },
   data: () => ({
     defaultPosterBg:
-      "linear-gradient(45deg,rgb(0, 3, 38) 0%,rgb(82, 15, 117) 100%)",
+      "linear-gradient(45deg,rgb(0, 3, 38) 0%,rgb(82, 15, 117) 100%)"
   }),
   computed: {
     posterStyle() {
       return {
-        "background-image": this.posterBg,
+        "background-image": this.posterBg
       };
     },
     posterBg() {
       return this.poster ? `url(${this.poster})` : this.defaultPosterBg;
-    },
-  },
+    }
+  }
 };
 </script>
 
