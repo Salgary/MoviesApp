@@ -1,6 +1,10 @@
 # moviesapp
 
 workplace = C:\GIT-repo\movies-app\moviesapp
+## Project run
+```
+https://salgary.github.io/MoviesApp/dist/index.html
+```
 
 ## Project setup
 ```
